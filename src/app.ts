@@ -1,13 +1,14 @@
 import express from "express";
 import cors from "cors";
+import {loadEndpoints} from "./router/api";
 
-const PORT = process.env.PORT ?? 3000
+const PORT = process.env.PORT ?? 8000
 
 const app = express()
 app.use(express.json())
 app.use(cors)
 app.set("port", PORT)
 
-app.listen(PORT, () => {
-    console.log(`Listening on PORT: ${PORT}`)
-})
+loadEndpoints(app)
+
+export default app;
