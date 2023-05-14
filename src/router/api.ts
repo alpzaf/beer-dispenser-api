@@ -7,5 +7,3 @@ const router = Router();
 router.post('/dispenser/create', createDispenserController);
 
 export default router;
-
-

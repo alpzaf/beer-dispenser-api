@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import api from "./router/api";
 
-const PORT = process.env.PORT ?? 8000
+const PORT = process.env.PORT ?? 3000
 
 const app = express()
 app.use(express.json())
