@@ -1,20 +1,21 @@
 import type {Request, Response} from "express";
-import {PrismaClient} from "@prisma/client";
+import {createDispenser} from "../models/Dispenser";
 
-const prisma = new PrismaClient()
+export const createDispenserController = async (req: Request, res: Response) => {
+    try {
+        const { flow_volume } = req.body
 
-export default async function create(req: Request, res: Response) {
-    const { flow_volume } = req.body as {flow_volume: number}
+        const dispenser = await createDispenser({ flow_volume })
 
-    const result = await prisma.dispenser.create({
-        data: {
-            flow_volume
-        }
-    })
+        res.status(201).json(dispenser)
+    } catch (err) {
+        console.error("Error creating dispenser:", err)
+        res.status(500).json({ error: 'An error occurred while creating the dispenser' });
+    }
 
-    res.json({
-        status: "true",
-        message: "Dispenser created successfully",
-        result
-    })
+    // res.status(201).json({
+    //     status: "true",
+    //     message: "Dispenser created successfully",
+    //     result
+    // })
 }

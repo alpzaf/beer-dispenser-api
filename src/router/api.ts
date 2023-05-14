@@ -1,6 +1,11 @@
-import type { Application } from "express";
-import create from "../controllers/DispenserController";
+import { Router } from "express";
+import {createDispenserController} from "../controllers/DispenserController";
 
-export const loadEndpoints = (app: Application): void => {
-    app.post("/dispenser/create", create)
-};
+const router = Router();
+
+// POST /api/dispenser/create
+router.post('/dispenser/create', createDispenserController);
+
+export default router;
+
+

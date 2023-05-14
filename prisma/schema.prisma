@@ -12,5 +12,5 @@ model Dispenser {
   opened_at   DateTime?
   closed_at   DateTime?
   flow_volume Float
-  total_spent Float?
+  total_spent Float     @default(0.0000)
 }
