@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import api from "./router/api";
+import errorHandlerMiddleware from "./middlewares/error-handler";
 
 const PORT = process.env.PORT ?? 3000
 
@@ -13,9 +14,6 @@ app.set("port", PORT)
 app.use('/api', api);
 
 // Error handling middleware
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    console.error('Error:', err.stack);
-    res.status(500).json({ error: 'Internal Server Error' });
-});
+app.use(errorHandlerMiddleware);
 
 export default app;
